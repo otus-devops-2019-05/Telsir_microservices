@@ -1,2 +1,3 @@
 # Telsir_microservices
-Telsir microservices repository
+
+# HW 12 - Технология контейнеризации. Введение в Docker
