@@ -1,5 +1,11 @@
 # Telsir_microservices
 
+# HW14 - Docker Compose
+
+Установка: `https://docs.docker.com/compose/install/#install-compose`
+
+
+
 # HW13 - Docker-образы Микросервисы
 
 Выполнена основная часть домашней работы по заданиям. 
