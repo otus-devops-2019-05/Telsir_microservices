@@ -4,6 +4,31 @@
 
 Установка: `https://docs.docker.com/compose/install/#install-compose`
 
+Env_variables: `https://docs.docker.com/compose/env-file/`
+
+Для указания отличного от дефолтного имени проекта - необходимо использовать ключ `-p %value%`
+
+    [telsir@Heaven src]$ docker-compose up -d
+    WARNING: Some networks were defined but are not used by any service: reddit
+    Starting src_comment_1 ... done
+    Starting src_ui_1      ... done
+    Starting src_post_db_1 ... done
+    Starting src_post_1    ... done
+    [telsir@Heaven src]$ sudo docker kill $(sudo docker ps -q)
+    3687bb7b2111
+    3880f9efc782
+    1e64cd5cf385
+    fb8280ed3759
+    [telsir@Heaven src]$ docker-compose -p trustme up -d
+    WARNING: Some networks were defined but are not used by any service: reddit
+    Creating network "trustme_back_net" with the default driver
+    Creating network "trustme_front_net" with the default driver
+    Creating volume "trustme_post_db" with default driver
+    Creating trustme_ui_1      ... done
+    Creating trustme_post_1    ... done
+    Creating trustme_post_db_1 ... done
+    Creating trustme_comment_1 ... done
+
 
 
 # HW13 - Docker-образы Микросервисы
