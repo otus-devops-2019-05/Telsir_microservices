@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  post_db:
+    image: ${MONGO_IMAGE}
+    volumes:
+      - ${MONGO_VOLUME}
+    networks:
+      - ${BNET}
+  ui:
+    build: ./ui
+    image: ${USERNAME}/ui:${APP_VERSION}
+    ports:
+      - ${UI_PORT}
+    networks:
+      - ${FNET}
+  post:
+    build: ./post-py
+    image: ${USERNAME}/post:${APP_VERSION}
+    networks:
+      - ${BNET}
+  comment:
+    build: ./comment
+    image: ${USERNAME}/comment:${APP_VERSION}
+    networks:
+      - ${BNET}
+
+volumes:
+  post_db:
+
+networks:
+  reddit:
+  back_net:
+  front_net:
