@@ -1,4 +1,8 @@
 # Telsir_microservices
+# HW 15 - Gitlab
+
+Пишем на энсибле. Сейчас нет времени разбираться в модуле GCP и динамик инвенторях, так, что в файле ansible/base/files/docker-compose.yml необходимо измений IP при настройке нового хоста вручную 
+
 
 # HW14 - Docker Compose
 

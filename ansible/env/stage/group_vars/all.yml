@@ -1,0 +1,19 @@
+gitlab:
+  dir:
+    gitlab_home: '/srv/gitlab'
+    subdirs:
+      - config
+      - data
+      - logs
+  api_token: '54sxjquu-BRtoqZcHzKk'
+  register_token: 'Msf6VVy7zXN1TMysagtB'
+
+
+apt:
+  gpg_key: 'https://download.docker.com/linux/ubuntu/gpg'
+  repo:  'deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+  packages:
+    - docker-ce
+    - docker-compose
+
+
