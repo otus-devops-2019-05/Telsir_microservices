@@ -6,9 +6,9 @@
     state: directory
   with_items: '{{ gitlab.dir.subdirs }}'
 
-- name: BASE | Prepare docker-compose.yml from template
-  copy:
-    src: docker-compose.yml
+- name: BASE | Prepare docker-compose.yml.j2 from template
+  template:
+    src: docker-compose.yml.j2
     dest: '{{ gitlab.dir.gitlab_home }}/docker-compose.yml'
 
 - name: BASE | Create and start services with Docker Compose
@@ -16,9 +16,9 @@
     project_src: '{{ gitlab.dir.gitlab_home }}'
   register: docker_compose_result
 
-- name: Something with runners
-  shell: docker run -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest
-  ignore_errors: yes
+#- name: Something with runners
+#  shell: docker run -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest
+#  ignore_errors: yes
 
 #// TODO переписать модулем: compose+ansible, получить ip контейнера, настраивать через модуль gitlab_runner
 #// Ручная настройка по презентахе
