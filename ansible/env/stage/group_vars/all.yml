@@ -7,6 +7,7 @@ system:
     - vim
     - python
     - python3
+    - ruby
 
 gitlab:
   dir:
