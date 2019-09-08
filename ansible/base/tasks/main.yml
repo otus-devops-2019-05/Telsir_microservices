@@ -16,10 +16,10 @@
     project_src: '{{ gitlab.dir.gitlab_home }}'
   register: docker_compose_result
 
-#- name: Something with runners
-#  shell: docker run -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest
-#  ignore_errors: yes
+- name: Something with runners
+  shell: docker run -d --name gitlab-runner --restart always -v /srv/gitlab-runner/config:/etc/gitlab-runner -v /var/run/docker.sock:/var/run/docker.sock gitlab/gitlab-runner:latest
+  ignore_errors: yes
 
 #// TODO переписать модулем: compose+ansible, получить ip контейнера, настраивать через модуль gitlab_runner
-#// Ручная настройка по презентахе
+#// Ручная настройка по презентахе @@ docker exec -it gitlab-runner gitlab-runner register --run-untagged --locked=false @@
 
