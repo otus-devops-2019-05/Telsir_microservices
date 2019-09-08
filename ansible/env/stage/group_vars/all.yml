@@ -7,7 +7,9 @@ system:
     - vim
     - python
     - python3
-    - ruby
+#    - ruby-full
+#    - ruby-bundler
+#    - build-essential
 
 gitlab:
   dir:
