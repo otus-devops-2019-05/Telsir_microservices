@@ -1,0 +1,30 @@
+ext_gitlab_ip: 34.70.85.135
+
+system:
+  packages:
+    - apt-transport-https
+    - aptitude
+    - vim
+    - python
+    - python3
+#    - ruby-full
+#    - ruby-bundler
+#    - build-essential
+
+gitlab:
+  dir:
+    gitlab_home: '/srv/gitlab'
+    subdirs:
+      - config
+      - data
+      - logs
+  api_token: '54sxjquu-BRtoqZcHzKk'
+  register_token: 'Msf6VVy7zXN1TMysagtB'
+
+
+apt:
+  gpg_key: 'http://download.docker.com/linux/ubuntu/gpg'
+  repo:  'deb http://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+  packages:
+    - docker-ce
+    - docker-compose

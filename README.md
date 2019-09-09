@@ -1,4 +1,15 @@
 # Telsir_microservices
+# HW 15 - Gitlab
+
+Пишем на энсибле. Сейчас нет времени разбираться в модуле GCP и динамик инвентори, так, что в файле ansible/env/stage/group_vars/all.yml необходимо измений IP при настройке нового хоста в поле `ext_gitlab_ip`
+
+Если IP у пересоздаваемого хоста не менялся, запускаем `ssh-keygen -f /home/telsir/.ssh/known_hosts`
+
+При настройке ранера под проект необходимо использовать image `ruby:2.4.2`
+
+ansible code для развертывания перенесен в директорию gitlab-ci
+
+Для запуска деплоймента используем команду `ansible-playbook -i gitlab-ci/ansible/env/stage/inventory gitlab-ci/ansible/main.yml`
 
 # HW14 - Docker Compose
 

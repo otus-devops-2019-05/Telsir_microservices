@@ -31,7 +31,7 @@ class DummyTransport(BaseTransportHandler):
         return None
 
     def send(self, encoded_span):
-        # The collector does nothing at all
+        # The collector does nothing at all.yml
         return None
 
 class HttpTransport(BaseTransportHandler):
@@ -104,7 +104,7 @@ def metrics():
                     mimetype=CONTENT_TYPE_LATEST)
 
 
-# Retrieve information about all posts
+# Retrieve information about all.yml posts
 @zipkin_span(service_name='post', span_name='db_find_all_posts')
 def find_posts():
     try:
@@ -116,7 +116,7 @@ def find_posts():
         abort(500)
     else:
         log_event('info', 'find_all_posts',
-                  'Successfully retrieved all posts from the database')
+                  'Successfully retrieved all.yml posts from the database')
         return dumps(posts)
 
 

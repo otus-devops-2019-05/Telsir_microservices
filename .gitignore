@@ -1,7 +1,7 @@
 build_info.txt
 prometheus/
 .env
-
+someshit
 ## python specific
 *.pyc
 
