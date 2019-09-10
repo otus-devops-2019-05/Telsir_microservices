@@ -1,0 +1,64 @@
+version: '3.3'
+services:
+  node-exporter:
+    image: prom/node-exporter:v0.15.2
+    user: root
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+    networks:
+      - ${BNET}
+  post_db:
+    image: ${MONGO_IMAGE}
+    volumes:
+      - ${MONGO_VOLUME}
+    networks:
+      - ${BNET}
+  ui:
+    image: ${USER_NAME}/ui:${UI_VERSION}
+    ports:
+      - ${UI_PORT}
+    depends_on:
+      - post
+    networks:
+      - ${BNET}
+      - ${FNET}
+  post:
+    image: ${USER_NAME}/post:${POST_VERSION}
+    depends_on:
+      - post_db
+    networks:
+      - ${BNET}
+  comment:
+    image: ${USER_NAME}/comment:${COM_VERSION}
+    depends_on:
+      - post
+    networks:
+      - ${BNET}
+  prometheus:
+    image: ${USER_NAME}/prometheus
+    depends_on:
+      - ui
+    ports:
+      - ${PRO_PORT}
+    volumes:
+      - ${PROMETHEUS_VOLUME}
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d'
+    networks:
+      - ${BNET}
+
+volumes:
+  post_db:
+  prometheus_data:
+
+networks:
+  back_net:
+  front_net:
