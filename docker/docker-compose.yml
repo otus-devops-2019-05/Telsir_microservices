@@ -15,7 +15,6 @@ services:
       - front_net
       - back_net
 
-
   post_db:
     image: ${MONGO_IMAGE}
     volumes:
@@ -26,7 +25,6 @@ services:
           - post_db
           - comment_db
 
-
   ui:
     image: ${USER_NAME}/ui:${UI_VERSION}
     ports:
@@ -35,20 +33,17 @@ services:
       - front_net
       - back_net
 
-
   post:
     image: ${USER_NAME}/post:${POST_VERSION}
     networks:
       - front_net
       - back_net
 
-
   comment:
     image: ${USER_NAME}/comment:${COM_VERSION}
     networks:
       - front_net
       - back_net
-
 
   prometheus:
     image: ${USER_NAME}/prometheus
