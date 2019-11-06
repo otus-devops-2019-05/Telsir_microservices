@@ -12,34 +12,44 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
     networks:
-      - ${BNET}
+      - front_net
+      - back_net
+
+
   post_db:
     image: ${MONGO_IMAGE}
     volumes:
-      - ${MONGO_VOLUME}
+      - post_db:/data/db
     networks:
-      - ${BNET}
+      back_net:
+        aliases:
+          - post_db
+          - comment_db
+
+
   ui:
     image: ${USER_NAME}/ui:${UI_VERSION}
     ports:
       - ${UI_PORT}
-    depends_on:
-      - post
     networks:
-      - ${BNET}
-      - ${FNET}
+      - front_net
+      - back_net
+
+
   post:
     image: ${USER_NAME}/post:${POST_VERSION}
-    depends_on:
-      - post_db
     networks:
-      - ${BNET}
+      - front_net
+      - back_net
+
+
   comment:
     image: ${USER_NAME}/comment:${COM_VERSION}
-    depends_on:
-      - post
     networks:
-      - ${BNET}
+      - front_net
+      - back_net
+
+
   prometheus:
     image: ${USER_NAME}/prometheus
     depends_on:
@@ -53,7 +63,8 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=1d'
     networks:
-      - ${BNET}
+      - front_net
+      - back_net
 
 volumes:
   post_db:
