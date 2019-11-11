@@ -1,0 +1,7 @@
+---
+- name: Install base soft & docker
+  become: yes
+  hosts: localhost
+  roles:
+    - docker
+    - recreation

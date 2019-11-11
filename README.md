@@ -1,4 +1,12 @@
 # Telsir_microservices
+# HW 16 - Prometheus
+
+Домашная работа по мониторингу пройдена.
+
+https://cloud.docker.com/u/telsir/repository/list
+
+
+
 # HW 15 - Gitlab
 
 Пишем на энсибле. Сейчас нет времени разбираться в модуле GCP и динамик инвентори, так, что в файле ansible/env/stage/group_vars/all.yml необходимо измений IP при настройке нового хоста в поле `ext_gitlab_ip`

@@ -1,0 +1,23 @@
+---
+- name: INSTALL | Install system packages on remote host
+  apt:
+    name: '{{ system.packages }}'
+    state: present
+
+# tasks file for docker
+- name: PRE | Add GPG key into apt
+  apt_key:
+    url: '{{ apt.gpg_key }}'
+    state: present
+
+- name: PRE | Add docker repository
+  apt_repository:
+    repo: '{{ apt.repo }}'
+    update_cache: yes
+    state: present
+
+- name: INSTALL | Install docker on remote host
+  apt:
+    name: '{{ apt.packages }}'
+    state: present
+  #with_items:
